@@ -9,7 +9,7 @@ import { ProductDetails } from "@/components/ProductDetails";
 import { content } from "@/lib/content";
 import { PRODUCT_QUERY, RELATED_PRODUCTS_QUERY, type ProductData } from "@/lib/product-query";
 import { canonicalUrl } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 import { toURLSearchParams } from "@/lib/url-params";
 
 type Props = {
@@ -52,7 +52,7 @@ async function fetchProduct(
   // serializes arguments, so a URLSearchParams passed in loses `.get`.
   const selectedOptions = getSelectedProductOptions(new URLSearchParams(searchString));
 
-  const { data, errors } = await staticStorefrontClient.graphql(PRODUCT_QUERY, {
+  const { data, errors } = await getStaticStorefrontClient().graphql(PRODUCT_QUERY, {
     variables: { handle, selectedOptions },
   });
 
@@ -98,7 +98,7 @@ async function RelatedProducts({ handle }: { handle: string }) {
 
   let related: ProductCardData[] = [];
   try {
-    const { data, errors } = await staticStorefrontClient.graphql(RELATED_PRODUCTS_QUERY, {
+    const { data, errors } = await getStaticStorefrontClient().graphql(RELATED_PRODUCTS_QUERY, {
       variables: { handle },
     });
     if (errors) {

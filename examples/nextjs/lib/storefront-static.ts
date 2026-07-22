@@ -18,18 +18,28 @@ import { resolveStorefrontConfig } from "./storefront-config";
  * inputs). The `cache:` option is never passed to `graphql()` — Next native
  * data cache + `cacheLife`/`cacheTag` replace the Oxygen sub-request LRU.
  */
-const requestContext = createShopifyRequestContext({
-  request: { headers: new Headers() },
-  i18n: DEFAULT_MARKET,
-});
+function createStaticStorefrontClient() {
+  const requestContext = createShopifyRequestContext({
+    request: { headers: new Headers() },
+    i18n: DEFAULT_MARKET,
+  });
+  const { storeDomain, privateStorefrontToken } = resolveStorefrontConfig();
 
-const { storeDomain, privateStorefrontToken } = resolveStorefrontConfig();
+  return createStorefrontClient({
+    type: "private_no_buyer_context",
+    requestContext,
+    config: {
+      storeDomain,
+      privateStorefrontToken,
+    },
+  });
+}
 
-export const staticStorefrontClient = createStorefrontClient({
-  type: "private_no_buyer_context",
-  requestContext,
-  config: {
-    storeDomain,
-    privateStorefrontToken,
-  },
-});
+let staticStorefrontClient: ReturnType<typeof createStaticStorefrontClient> | undefined;
+
+export function getStaticStorefrontClient() {
+  // Workers prohibit random generation during module evaluation. Lazily
+  // initialize the shared client from a request while retaining one per isolate.
+  staticStorefrontClient ??= createStaticStorefrontClient();
+  return staticStorefrontClient;
+}

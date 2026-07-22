@@ -2,15 +2,25 @@
 
 A brand-new Next.js 16 (App Router, Turbopack, React 19.2) storefront example,
 translating `examples/core` idiomatically into Next.js and bound to
-`@shopify/hydrogen`. Runs on Vercel. Zero secrets required (mock.shop fallback).
+`@shopify/hydrogen`. The same source runs on Next/Vercel and Vinext/Cloudflare
+Workers. Zero secrets required (mock.shop fallback).
 
 ## Scripts
 
 - `pnpm --filter @shopify/hydrogen-example-nextjs dev` — dev server (Turbopack).
 - `pnpm --filter @shopify/hydrogen-example-nextjs build` — production build.
 - `pnpm --filter @shopify/hydrogen-example-nextjs start` — serve the build.
+- `pnpm --filter @shopify/hydrogen-example-nextjs dev:vinext` — Vinext dev
+  server on port 3001.
+- `pnpm --filter @shopify/hydrogen-example-nextjs build:vinext` — Vinext
+  production build.
+- `pnpm --filter @shopify/hydrogen-example-nextjs deploy:vinext` — deploy the
+  Vinext build to Cloudflare Workers.
 - `pnpm --filter @shopify/hydrogen-example-nextjs typecheck` — `tsc` +
   `gql.tada check --fail-on-warn`.
+
+See the repository-level [`BENCHMARK.md`](../../BENCHMARK.md) for live URLs,
+results, and cache-behavior notes.
 
 ## Architecture
 
@@ -68,17 +78,8 @@ them) — Customer Account OAuth login/refresh/logout is handled there. The
 header account link is hidden on mock.shop and shown only when a real store is
 configured.
 
-## Build note: `--debug-prerender`
+## Production builds
 
-The `build` script uses `next build --debug-prerender`. Next.js 16 +
-React 19.2 has a confirmed framework bug
-([vercel/next.js#84994](https://github.com/vercel/next.js/issues/84994),
-[#86178](https://github.com/vercel/next.js/issues/86178),
-[#94667](https://github.com/vercel/next.js/discussions/94667)) where the
-internal `/_global-error` route fails to prerender with
-`TypeError: Cannot read properties of null (reading 'useContext')`, blocking
-`next build`. The bug reproduces with no custom error page and is independent
-of this app's code; the fix requires React 19.3.0 (unreleased). The
-`--debug-prerender` flag is the only available workaround and produces a
-complete, valid Partial-Prerender production build (`next start` serves it
-correctly). Remove the flag once React 19.3.0 ships.
+The example uses a normal `next build`. The earlier `--debug-prerender`
+workaround for `/_global-error` is no longer necessary with the current
+Next.js and React patch releases.

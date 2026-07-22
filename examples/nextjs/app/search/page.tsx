@@ -7,7 +7,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import { CollectionBrowser } from "@/components/CollectionBrowser";
 import { SEARCH_QUERY } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 import { toURLSearchParams } from "@/lib/url-params";
 
 export const metadata: Metadata = {
@@ -60,7 +60,7 @@ async function fetchSearch(term: string, searchString: string): Promise<SearchRe
   // supports PRICE/RELEVANCE. Map unsupported sorts back to RELEVANCE.
   const searchSortKey = browse.sortKey === "PRICE" ? "PRICE" : "RELEVANCE";
 
-  const { data, errors } = await staticStorefrontClient.graphql(SEARCH_QUERY, {
+  const { data, errors } = await getStaticStorefrontClient().graphql(SEARCH_QUERY, {
     variables: {
       query: term,
       first: 24,

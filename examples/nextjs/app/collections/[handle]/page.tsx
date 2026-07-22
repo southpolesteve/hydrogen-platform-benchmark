@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 import { CollectionBrowser } from "@/components/CollectionBrowser";
 import { COLLECTION_QUERY } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 import { toURLSearchParams } from "@/lib/url-params";
 
 type Props = {
@@ -62,7 +62,7 @@ async function query(
   sortKey: ReturnType<typeof parseCollectionParams>["sortKey"],
   reverse: boolean,
 ) {
-  const { data, errors } = await staticStorefrontClient.graphql(COLLECTION_QUERY, {
+  const { data, errors } = await getStaticStorefrontClient().graphql(COLLECTION_QUERY, {
     variables: {
       handle,
       first: 24,

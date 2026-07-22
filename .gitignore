@@ -12,3 +12,4 @@ e2e-run-logs
 .turbo
 .storefront-benchmark-workspace/
 tsconfig.tsbuildinfo
+.vercel

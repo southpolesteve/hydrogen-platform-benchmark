@@ -3,7 +3,7 @@ import { cacheLife, cacheTag } from "next/cache";
 
 import { SITEMAP_QUERY } from "@/lib/queries";
 import { SITE_ORIGIN } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 
 /**
  * `/sitemap.xml` (engineering.md F10). Lists product + collection URLs with
@@ -27,7 +27,7 @@ async function fetchSitemap(): Promise<SitemapEntry[]> {
   cacheLife("hours");
   cacheTag("products", "collections");
 
-  const { data, errors } = await staticStorefrontClient.graphql(SITEMAP_QUERY);
+  const { data, errors } = await getStaticStorefrontClient().graphql(SITEMAP_QUERY);
   if (errors) {
     console.error("[hydrogen] Sitemap query failed", errors);
   }

@@ -29,3 +29,7 @@ next-env.d.ts
 /public/storefront/analytics/shopify.js.map
 /public/storefront/webmcp.js
 /public/storefront/webmcp.js.map
+/dist/
+.vinext/
+.wrangler/
+.vercel

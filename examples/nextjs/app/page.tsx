@@ -7,7 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { content } from "@/lib/content";
 import { HOME_QUERY } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 
 export const metadata: Metadata = {
   title: "CORE — Discover our latest collection",
@@ -29,7 +29,7 @@ async function fetchHome() {
   cacheLife("minutes");
   cacheTag("products", "collections");
 
-  const { data, errors } = await staticStorefrontClient.graphql(HOME_QUERY);
+  const { data, errors } = await getStaticStorefrontClient().graphql(HOME_QUERY);
   if (errors) {
     console.error("[hydrogen] Home query failed", errors);
   }

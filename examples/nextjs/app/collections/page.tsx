@@ -7,7 +7,7 @@ import { CollectionCard } from "@/components/CollectionCard";
 import { content } from "@/lib/content";
 import { COLLECTIONS_QUERY } from "@/lib/queries";
 import { canonicalUrl } from "@/lib/site";
-import { staticStorefrontClient } from "@/lib/storefront-static";
+import { getStaticStorefrontClient } from "@/lib/storefront-static";
 
 export const metadata: Metadata = {
   title: "Collections",
@@ -25,7 +25,7 @@ async function fetchCollections(after?: string) {
   cacheLife("hours");
   cacheTag("collections");
 
-  const { data, errors } = await staticStorefrontClient.graphql(COLLECTIONS_QUERY, {
+  const { data, errors } = await getStaticStorefrontClient().graphql(COLLECTIONS_QUERY, {
     variables: { first: 24, after },
   });
   if (errors) {

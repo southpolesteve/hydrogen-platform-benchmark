@@ -6,24 +6,36 @@
   "scripts": {
     "dev": "next dev",
     "https:dev": "next dev --experimental-https --experimental-https-cert ../../.cert/localtest.me.pem --experimental-https-key ../../.cert/localtest.me-key.pem --hostname localtest.me --port 5173",
-    "build": "next build --debug-prerender",
+    "build": "next build",
     "start": "next start",
-    "typecheck": "tsc && gql.tada check --fail-on-warn"
+    "typecheck": "tsc && gql.tada check --fail-on-warn",
+    "dev:vinext": "vinext dev --port 3001",
+    "build:vinext": "vinext build",
+    "start:vinext": "wrangler dev --config dist/server/wrangler.json",
+    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json"
   },
   "dependencies": {
     "@shopify/hydrogen": "workspace:*",
+    "@vinext/cloudflare": "1.0.0-beta.3",
     "isbot": "^5",
-    "next": "16.2.9",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "next": "16.2.11",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-server-dom-webpack": "19.2.8",
+    "vinext": "1.0.0-beta.3"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "1.46.0",
     "@tailwindcss/postcss": "^4.2.4",
     "@types/node": "^25.8.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "@vitejs/plugin-rsc": "^0.5.29",
     "gql.tada": "^1.9.2",
     "tailwindcss": "^4.2.4",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "vite": "8.1.5",
+    "wrangler": "^4.113.0"
   }
 }

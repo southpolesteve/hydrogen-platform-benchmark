@@ -1,6 +1,7 @@
 import { localCdnAssetsTurbopackRules } from "@shared/local-cdn-assets-plugin/turbopack";
 import type { NextConfig } from "next";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
+import path from "node:path";
 
 /**
  * Next.js 16 config for the Hydrogen example.
@@ -17,9 +18,11 @@ const EMPTY_TURBOPACK_RULES = {};
 
 export default function nextConfig(phase: string): NextConfig {
   const isDevelopmentServer = phase === PHASE_DEVELOPMENT_SERVER;
+  const workspaceRoot = path.resolve(process.cwd(), "../..");
 
   return {
     cacheComponents: true,
+    outputFileTracingRoot: workspaceRoot,
     // React Strict Mode is disabled because `@shopify/hydrogen/react`'s
     // `PredictiveSearchProvider` destroys its store in the Strict Mode effect
     // cleanup (double-invoke), and `useMemo` returns the same (now-destroyed)
@@ -30,6 +33,7 @@ export default function nextConfig(phase: string): NextConfig {
     // Strict-Mode-safe upstream.
     reactStrictMode: false,
     turbopack: {
+      root: workspaceRoot,
       rules: isDevelopmentServer
         ? localCdnAssetsTurbopackRules({ createSymlinks: true })
         : EMPTY_TURBOPACK_RULES,
