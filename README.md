@@ -1,3 +1,9 @@
+> [!NOTE]
+> This fork benchmarks the same Hydrogen preview storefront on
+> [Next.js/Vercel](https://hydrogen-next-benchmark.vercel.app) and
+> [Vinext/Cloudflare Workers](https://hydrogen-vinext-benchmark.southpolesteve.workers.dev).
+> See [BENCHMARK.md](./BENCHMARK.md) for setup, results, and cache caveats.
+
 <div align="center">
 
 # Hydrogen
