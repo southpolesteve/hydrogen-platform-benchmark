@@ -1,0 +1,65 @@
+
+> hydrogen-platform-benchmark@0.0.0 build:vinext /Users/steve/hydrogen-official-template-benchmark
+> vinext build
+
+
+  vinext build  (Vite 8.1.5)
+
+[1/5] analyze client references...
+transforming...✓ 265 modules transformed.
+rendering chunks...
+✓ built in 373ms
+[2/5] analyze server references...
+transforming...✓ 147 modules transformed.
+rendering chunks...
+✓ built in 135ms
+[3/5] build rsc environment...
+transforming...✓ 259 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 280ms
+[4/5] build client environment...
+transforming...✓ 154 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 188ms
+[5/5] build ssr environment...
+transforming...✓ 148 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 176ms
+
+  Route (app)
+  ┌ ? /
+  ├ ? /cart
+  ├ ƒ /collections
+  ├ ƒ /collections/:handle
+  ├ ƒ /products/:handle
+  └ ƒ /search
+
+  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+        2.39 real         3.21 user         0.59 sys
+           804880384  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               61431  page reclaims
+                1008  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1277  voluntary context switches
+               66911  involuntary context switches
+          2227541929  instructions retired
+           698542563  cycles elapsed
+            88201864  peak memory footprint

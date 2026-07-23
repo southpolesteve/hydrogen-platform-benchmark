@@ -1,0 +1,52 @@
+
+> hydrogen-platform-benchmark@0.0.0 build /Users/steve/hydrogen-official-template-benchmark
+> next build
+
+▲ Next.js 16.2.7 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1433ms
+  Running TypeScript ...
+  Finished TypeScript in 3.3s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/4) ...
+  Generating static pages using 9 workers (1/4)
+  Generating static pages using 9 workers (2/4)
+  Generating static pages using 9 workers (3/4)
+✓ Generating static pages using 9 workers (4/4) in 73ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /cart
+├ ƒ /collections
+├ ƒ /collections/[handle]
+├ ○ /icon.svg
+├ ƒ /products/[handle]
+└ ƒ /search
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+        6.31 real        14.76 user         1.85 sys
+           876560384  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              176162  page reclaims
+                4135  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                  91  messages sent
+                  80  messages received
+                  20  signals received
+                4835  voluntary context switches
+              122840  involuntary context switches
+          2257779042  instructions retired
+           794125426  cycles elapsed
+            88038048  peak memory footprint

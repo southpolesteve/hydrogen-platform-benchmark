@@ -1,0 +1,65 @@
+
+> hydrogen-platform-benchmark@0.0.0 build:vinext /Users/steve/hydrogen-official-template-benchmark
+> vinext build
+
+
+  vinext build  (Vite 8.1.5)
+
+[1/5] analyze client references...
+[2Ktransforming...✓ 265 modules transformed.
+rendering chunks...
+✓ built in 345ms
+[2/5] analyze server references...
+[2Ktransforming...✓ 147 modules transformed.
+rendering chunks...
+✓ built in 142ms
+[3/5] build rsc environment...
+[2Ktransforming...✓ 259 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 291ms
+[4/5] build client environment...
+[2Ktransforming...✓ 154 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 239ms
+[5/5] build ssr environment...
+[2Ktransforming...✓ 148 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 210ms
+[0m
+  Route (app)
+  ┌ ? /                   
+  ├ ? /cart               
+  ├ ƒ /collections        
+  ├ ƒ /collections/:handle
+  ├ ƒ /products/:handle   
+  └ ƒ /search             
+
+  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+        2.58 real         3.28 user         0.61 sys
+           790183936  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               61107  page reclaims
+                 801  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1297  voluntary context switches
+               80985  involuntary context switches
+          2232413479  instructions retired
+           754810903  cycles elapsed
+            88726248  peak memory footprint
